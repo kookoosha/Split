@@ -1,0 +1,32 @@
+
+.container{
+    display: flex;
+    border: 1px solid #cbd5e0;
+    margin: 0 auto;
+    height: 500px;
+    width: 1000px;
+    
+
+    &__left{
+        width: 75%;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        background-color: rgb(56, 85, 152);
+    }
+
+    &__right{
+        flex: 1;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        background-color: bisque;
+    }
+}
+
+.resizer {
+    background-color: #cbd5e0;
+    cursor: ew-resize;
+    height: 100%;
+    width: 4px;
+    }
