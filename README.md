@@ -1,2 +1,2 @@
 # Split
-(split.gif)
+![Обзор приложения](split.gif)
