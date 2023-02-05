@@ -1,8 +1,6 @@
-var col_resize = document.getElementById('dragMe');
-console.log(document.getElementById('dragMe'));
+var colResize = document.getElementById('dragMe');
 //берём предыдущий и последующий элемент  (левый и правый блоки)
-var leftBlock = col_resize.previousElementSibling;
-var rightSide = col_resize.nextElementSibling;
+var leftBlock = colResize.previousElementSibling;
 var mouseDownEvent = function (leftBlock) { return function (e) {
     //событие при нажатии
     //получаем координаты мышки
@@ -15,16 +13,17 @@ var mouseDownEvent = function (leftBlock) { return function (e) {
     document.addEventListener('mouseup', mouseUpEvent);
 }; };
 var mouseMoveEvent = function (x, y, leftWidth) { return function (e) {
+    var _a;
     var dx = e.clientX - x;
     var dy = e.clientY - y;
-    var newLeftWidth = ((leftWidth + dx) * 100) / col_resize.parentNode.getBoundingClientRect().width;
-    console.log('newLeftWidth', newLeftWidth);
+    var a = (_a = colResize.offsetParent) === null || _a === void 0 ? void 0 : _a.getBoundingClientRect(); // сделать нормальное имя для переменной
+    var newLeftWidth = ((leftWidth + dx) * 100) / a.width;
     leftBlock.style.width = "".concat(newLeftWidth, "%");
     document.body.style.cursor = 'col-resize';
 }; };
 var mouseUpEvent = function () {
-    document.removeEventListener('mousemove', mouseMoveEvent);
+    document.removeEventListener('mousemove', function () { return mouseMoveEvent(); });
     document.removeEventListener('mouseup', mouseUpEvent);
 };
 //вешаем событие 
-col_resize.addEventListener('mousedown', function () { return mouseDownEvent(leftBlock); });
+colResize.addEventListener('mousedown', function () { return mouseDownEvent(leftBlock); });
