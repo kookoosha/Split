@@ -21,9 +21,18 @@ const mouseMoveEvent = function (e) {
     const dx = e.clientX - x;
     const dy = e.clientY - y;
 
-    const newLeftWidth = ((leftWidth + dx) * 100) / col_resize.parentNode.getBoundingClientRect().width;
+    
+if(col_resize.parentNode.getBoundingClientRect().width != 0) {
+    let newLeftWidth = ((leftWidth + dx) * 100) / col_resize.parentNode.getBoundingClientRect().width;
+    if(newLeftWidth < 30){
+        newLeftWidth = 20;
+    } if(newLeftWidth > 90){
+        newLeftWidth = 90;
+    }
     leftBlock.style.width = `${newLeftWidth}%`;
     document.body.style.cursor = 'col-resize';
+}
+
 };
 const mouseUpEvent = function () {
     document.removeEventListener('mousemove', mouseMoveEvent);
