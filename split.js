@@ -1,35 +1,30 @@
-const col_resize = document.getElementById('dragMe');
+var col_resize = document.getElementById('dragMe');
+console.log(document.getElementById('dragMe'));
 //берём предыдущий и последующий элемент  (левый и правый блоки)
-const leftBlock = col_resize.previousElementSibling;
-const rightSide = col_resize.nextElementSibling;
-
-// mousedown -> 
-
-const mouseDownEvent = function (e) {
+var leftBlock = col_resize.previousElementSibling;
+var rightSide = col_resize.nextElementSibling;
+var mouseDownEvent = function (leftBlock) { return function (e) {
     //событие при нажатии
     //получаем координаты мышки
-    x = e.clientX;
-    y = e.clientY;
+    var x = e.clientX;
+    var y = e.clientY;
     //узнаём текущую ширину левой стороны
-    leftWidth = leftBlock.getBoundingClientRect().width;
-   //запускаем функцию передвижения и удаления
-    document.addEventListener('mousemove', mouseMoveEvent);
+    var leftWidth = leftBlock.getBoundingClientRect().width;
+    //запускаем функцию передвижения и удаления
+    document.addEventListener('mousemove', function () { return mouseMoveEvent(x, y, leftWidth); });
     document.addEventListener('mouseup', mouseUpEvent);
-};
-
-const mouseMoveEvent = function (e) {
-    const dx = e.clientX - x;
-    const dy = e.clientY - y;
-    
-    const newLeftWidth = ((leftWidth + dx) * 100) / col_resize.parentNode.getBoundingClientRect().width;
-    leftBlock.style.width = `${newLeftWidth}%`;
+}; };
+var mouseMoveEvent = function (x, y, leftWidth) { return function (e) {
+    var dx = e.clientX - x;
+    var dy = e.clientY - y;
+    var newLeftWidth = ((leftWidth + dx) * 100) / col_resize.parentNode.getBoundingClientRect().width;
+    console.log('newLeftWidth', newLeftWidth);
+    leftBlock.style.width = "".concat(newLeftWidth, "%");
     document.body.style.cursor = 'col-resize';
-};
-const mouseUpEvent = function () {
+}; };
+var mouseUpEvent = function () {
     document.removeEventListener('mousemove', mouseMoveEvent);
     document.removeEventListener('mouseup', mouseUpEvent);
-   
 };
-
 //вешаем событие 
-col_resize.addEventListener('mousedown', mouseDownEvent);
+col_resize.addEventListener('mousedown', function () { return mouseDownEvent(leftBlock); });
