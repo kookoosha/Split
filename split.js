@@ -1,7 +1,7 @@
-const col_resize = document.getElementById('dragMe');
+const colResize = document.getElementById('dragMe');
 //берём предыдущий и последующий элемент  (левый и правый блоки)
-const leftBlock = col_resize.previousElementSibling;
-const rightSide = col_resize.nextElementSibling;
+const leftBlock = colResize.previousElementSibling;
+const rightSide = colResize.nextElementSibling;
 
 // mousedown -> 
 
@@ -22,8 +22,8 @@ const mouseMoveEvent = function (e) {
     const dy = e.clientY - y;
 
     
-if(col_resize.parentNode.getBoundingClientRect().width != 0) {
-    let newLeftWidth = ((leftWidth + dx) * 100) / col_resize.parentNode.getBoundingClientRect().width;
+if(colResize.parentNode.getBoundingClientRect().width != 0) {
+    let newLeftWidth = ((leftWidth + dx) * 100) / colResize.parentNode.getBoundingClientRect().width;
     if(newLeftWidth < 30){
         newLeftWidth = 20;
     } if(newLeftWidth > 90){
@@ -41,4 +41,4 @@ const mouseUpEvent = function () {
 };
 
 //вешаем событие 
-col_resize.addEventListener('mousedown', mouseDownEvent);
+colResize.addEventListener('mousedown', mouseDownEvent);
